@@ -27,7 +27,8 @@ class SignController < ApplicationController
   end
 
   def do_sign_out
-
+    session[:current_user] = nil
+    redirect_to '/'
   end
 
   private

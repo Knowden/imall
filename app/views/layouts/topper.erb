@@ -4,8 +4,13 @@
     <div class="col-md-10">
       <div id="top_bar" class="row" style="margin-top: 10px">
         <div class="col-md-4 text-left">
-          <span style="margin-right: 10px">您好,<%= link_to '请登录', sign_in_path %></span>
-          <span><%= link_to '注册', sign_up_path %></span>
+            <% if session[:current_user].nil? %>
+              <span style="margin-right: 10px">您好, <%= link_to '请登录', sign_in_path %></span>
+              <span><%= link_to '注册', sign_up_path %></span>
+            <% else %>
+              <span style="margin-right: 10px">您好, <%= session[:current_user]["name"] %></span>
+              <span><%= link_to '注销', sign_out_path %></span>
+            <% end %>
         </div>
         <div class="col-md-4"></div>
         <div class="col-md-4 text-right">
