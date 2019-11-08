@@ -5,4 +5,8 @@ class User < ApplicationRecord
   has_many :history_orders
   has_many :comments
   has_many :carts
+
+  validates :name,     uniqueness: true
+  validates :name,     presence: true
+  validates :password, presence: true
 end
