@@ -6,7 +6,7 @@
     <%= form_with model: @user, local: true, url: {action: 'do_sign_in'} do |form| %>
       <div class="form-group">
         <div class="input-group">
-          <%= form.label :name, '账户', class: 'form-inline', style: 'padding-right:5px' %>
+          <%= form.label :name, '账号', class: 'form-inline', style: 'padding-right:5px' %>
           <%= form.text_field :name, class: 'form-control', require: true %>
         </div>
         <br>

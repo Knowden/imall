@@ -1,10 +1,16 @@
 class SignController < ApplicationController
 
   def show_sign_up_page
+    @user = User.new
   end
 
   def do_sign_up
-
+    @user = User.create user_params
+    if @user.save
+      redirect_to '/'
+    else
+      render :show_sign_up_page
+    end
   end
 
   def show_sign_in_page
