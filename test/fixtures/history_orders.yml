@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  item: one
+  amount: 1
+  finish_date: 2019-11-08
+
+two:
+  user: two
+  item: two
+  amount: 1
+  finish_date: 2019-11-08
