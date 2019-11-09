@@ -1,1 +1,20 @@
-这里展示购物车信息
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <% @carts.each do |cart| %>
+    <div class="row">
+      <div class="col-md-3 item_image">
+        <%= image_tag "item_images/#{cart.item.id}.jpg", class: "img-fluid" %>
+      </div>
+      <div class="col-md-7 item_description">
+        <h4 class="text-left"><%= cart.item.name %></h4>
+        <p><%= cart.item.description %></p>
+      </div>
+      <div class="col-md-2 parches_amount" style="position:relative;">
+        <p style="position:absolute; bottom:0; right:0;">数量 : <%= cart.amount %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
