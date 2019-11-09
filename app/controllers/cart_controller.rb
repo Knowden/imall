@@ -15,10 +15,14 @@ class CartController < ApplicationController
       item.update!(amount: new_amount)
 
       # 创建新的购物车记录到当前用户
-      cart = Cart.new(user_id: session[:current_user]["id"],
-                      item_id: cart_params[:item_id],
-                      amount: cart_params[:parches_amount])
-      cart.save!
+      cart = Cart.find_by(user_id: session[:current_user]["id"], item_id: cart_params[:item_id])
+      if cart.nil?
+        Cart.create!(user_id: session[:current_user]["id"],
+                     item_id: cart_params[:item_id],
+                     amount: cart_params[:parches_amount])
+      else
+        cart.update!(amount: cart[:amount] + cart_params[:parches_amount].to_i)
+      end
     end
   end
 
