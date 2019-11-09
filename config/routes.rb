@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   post 'sign_in',  to: 'sign#do_sign_in'
 
   get  'sign_out', to: 'sign#do_sign_out'
+
+  get  'search',   to: 'search#show_search_page'
 end
