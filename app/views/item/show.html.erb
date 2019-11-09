@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8" id="main">
+    <div id="main_info" class="row">
+      <div id="item_image" class="col-md-6">
+        <%= image_tag "item_images/#{@item[:id]}.jpg", class: "img-fluid" %>
+        <h2 class="text-left"><%= @item[:name] %></h2>
+      </div>
+      <div id="item_parches" class="col-md-6 text-center">
+        <h6>剩余数量：<%= @item[:amount] %></h6>
+        <form action="javascript:void(0);" class="form-group">
+          <div class="input-group">
+            <label class="form-inline" for="parches_amount" style="margin-right: 10px; padding-top: 5px">数量</label>
+            <input type="text" class="form-control" id="parches_amount">
+          </div>
+          <br>
+          <input type="submit" class="form-control btn-primary" value="加入购物车">
+        </form>
+      </div>
+    </div>
+    <hr>
+    <div id="description">
+      <h4 class="text-left">详情信息</h4>
+      <p><%= @item[:description] %></p>
+    </div>
+    <hr>
+    <div id="comments">
+      <h4>买家评论</h4>
+      <% @item.comments.each do |comment| %>
+        <div class="comment">
+          <p><%= comment[:content] %></p>
+          <p class="text-right">
+            <span style="margin-right: 10px"><%= comment.user.name %></span>
+            <span><%= comment.create_date %></span>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>

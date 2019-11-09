@@ -9,8 +9,8 @@
       <% if i % 4 == 0 %>
         <div class="row">
       <% end %>
-      <div class="col-md-3">
-        <%= image_tag "item_images/1.jpg", class: 'img-fluid', style: 'margin-bottom: 5px'%>
+      <div class="col-md-3 item_block" id="<%= item[:id] %>" style="cursor: pointer">
+        <%= image_tag "item_images/#{item[:id]}.jpg", class: 'img-fluid', style: 'margin-bottom: 5px'%>
         <h3><%= item[:name] %></h3>
         <p><%= item[:description] %></p>
       </div>
@@ -27,3 +27,12 @@
   </div>
   <div class="col-md-2"></div>
 </div>
+
+<script>
+  $(document).ready(function(){
+      $(".item_block").click(function(){
+          let item_id = $(this).attr("id");
+          location.href = 'http://' + location.host + '/items/' + item_id;
+      });
+  });
+</script>
