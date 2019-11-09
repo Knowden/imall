@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   get  'search',    to: 'search#show_search_page'
 
   get  'items/:item_id', to: 'item#show'
+
+  get  'cart',      to: 'cart#show_carts'
+  post 'cart',      to: 'cart#new_cart'
 end

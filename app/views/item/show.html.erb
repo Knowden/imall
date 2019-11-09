@@ -8,14 +8,14 @@
       </div>
       <div id="item_parches" class="col-md-6 text-center">
         <h6>剩余数量：<%= @item[:amount] %></h6>
-        <form action="javascript:void(0);" class="form-group">
+        <%= form_tag cart_path, class: "form-group", method: :post do %>
           <div class="input-group">
             <label class="form-inline" for="parches_amount" style="margin-right: 10px; padding-top: 5px">数量</label>
-            <input type="text" class="form-control" id="parches_amount">
+            <input type="text" class="form-control" id="parches_amount" name="parches_amount" value="1">
           </div>
           <br>
           <input type="submit" class="form-control btn-primary" value="加入购物车">
-        </form>
+        <% end %>
       </div>
     </div>
     <hr>
