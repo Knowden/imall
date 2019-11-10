@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   post    'cart',      to: 'cart#new_cart'               # 新建一条购物车记录
   delete  'cart',      to: 'cart#remove_cart'            # 删除一条购物车记录
 
+  post    'parches',   to: 'cart#pay_cart'               # 结算当前用户购物车中的所有物品
+
 end

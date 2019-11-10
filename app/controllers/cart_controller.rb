@@ -46,8 +46,11 @@ class CartController < ApplicationController
   end
 
   # 支付购物车中的所有物品
+  # 事务：对于购物车中的每条记录，删除购物车中的记录并将其转化为订单表中的记录
   def pay_cart
+    ActiveRecord::Base.transaction do
 
+    end
   end
 
   private

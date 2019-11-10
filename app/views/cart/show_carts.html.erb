@@ -15,10 +15,18 @@
           <%= hidden_field_tag "cart_id", cart.id %>
           <%= submit_tag "删除", class: "btn btn-danger" %>
         <% end %>
-        <p style="position:absolute; bottom:0; right:0;">数量 : <%= cart.amount %></p>
+        <p style="position:absolute; bottom:0; right:0;">
+          <span>价格 : <%= "#{cart.amount} x #{cart.item.price} 元" %></span>
+        </p>
       </div>
     </div>
-    <% end %>
+    <% end %><br>
+    <div id="parches_window">
+      <%= form_tag parches_path, method: :post, class: "text-right" do %>
+        <span style="margin-right: 5px;">总价 : <%= @carts.map { |cart| cart[:amount] * cart.item[:price] }.sum %></span>
+        <%= submit_tag "结算", class: "btn btn-primary" %>
+      <% end %>
+    </div>
   </div>
   <div class="col-md-2"></div>
 </div>
