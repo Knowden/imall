@@ -6,6 +6,7 @@ class CartController < ApplicationController
   end
 
   # 接收参数，新建购物车条目
+  # 事务：首先减少商品的库存，然后在当前用户的购物车中创建新的记录
   def new_cart
     # 减少库存和创建记录应保持事务性，要么都执行，要么都不执行
     ActiveRecord::Base.transaction do
@@ -24,10 +25,33 @@ class CartController < ApplicationController
         cart.update!(amount: cart[:amount] + cart_params[:parches_amount].to_i)
       end
     end
+    redirect_to cart_url
+  end
+
+  # 删除购物车中的某个物品
+  # 事务：首先删除当前用户指定的购物车记录，然后将相应的商品库存恢复（增加）
+  def remove_cart
+    ActiveRecord::Base.transaction do
+      # 删除当前用户指定的购物车记录
+      cart = Cart.find_by!(id: cart_params[:cart_id])
+      cart_amount = cart[:amount]
+      item_id = cart[:item_id]
+      cart.delete
+
+      # 将相应商品的库存恢复
+      item = Item.find_by!(id: item_id)
+      item.update!(amount: item[:amount] + cart_amount)
+    end
+    redirect_to cart_url
+  end
+
+  # 支付购物车中的所有物品
+  def pay_cart
+
   end
 
   private
   def cart_params
-    params.permit(:parches_amount, :item_id)
+    params.permit(:parches_amount, :item_id, :cart_id)
   end
 end
