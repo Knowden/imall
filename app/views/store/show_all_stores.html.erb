@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h3 class="text-center">请选择您的店铺</h3>
+    <ul>
+      <% @stores.each do |store| %>
+        <li><h4><%= link_to store.name, stores_path + "/#{store.id}" %></h4></li>
+      <% end %>
+    </ul>
+    <br>
+    <%= link_to "新建商店", store_new_path %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
