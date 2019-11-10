@@ -49,8 +49,15 @@ class CartController < ApplicationController
   # 事务：对于购物车中的每条记录，删除购物车中的记录并将其转化为订单表中的记录
   def pay_cart
     ActiveRecord::Base.transaction do
-
+      carts = Cart.where(user_id: session[:current_user]["id"])
+      carts.each do |cart|
+        Order.create!(item_id: cart[:item_id],
+                      amount: cart[:amount],
+                      user_id: session[:current_user]["id"])
+      end
+      Cart.where(user_id: session[:current_user]["id"]).delete_all
     end
+    redirect_to cart_url
   end
 
   private
