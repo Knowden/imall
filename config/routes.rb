@@ -20,4 +20,6 @@ Rails.application.routes.draw do
 
   post    'parches',   to: 'cart#pay_cart'               # 结算当前用户购物车中的所有物品
 
+  get     'orders',    to: 'order#show_all_orders'        # 展示当前用户的所有订单
+
 end
