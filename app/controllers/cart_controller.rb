@@ -53,7 +53,8 @@ class CartController < ApplicationController
       carts.each do |cart|
         Order.create!(item_id: cart[:item_id],
                       amount: cart[:amount],
-                      user_id: session[:current_user]["id"])
+                      user_id: session[:current_user]["id"],
+                      order_state_id: 1)
       end
       Cart.where(user_id: session[:current_user]["id"]).delete_all
     end
