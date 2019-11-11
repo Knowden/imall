@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h3 class="text-center">编辑商品</h3>
+    <% if @item.errors.any? %>
+      <div id="error_msg" class="text-center" style="color: red; margin-top: 15px">
+        <h5>出错啦!</h5>
+        <% @item.errors.full_messages.each do |message| %>
+          <%= message %> <br>
+        <% end %>
+      </div>
+    <% end %>
+    <h4>商品名称 : <%= @item.name %></h4>
+    <%= form_tag "/items/#{@item.id}/edit", id: "item_form" do %>
+      <div id="description_field">
+        <label for="description">商品描述</label>
+        <textarea class="form-control" name="description" id="description" rows="3" form="item_form"><%= @item.description %></textarea>
+      </div>
+      <div id="amount_id" style="margin-top: 10px">
+        <label for="amount">库存数量</label>
+        <input class="form-control" type="number" name="amount" id="amount" value="<%= @item.amount %>" style="width: 120px;">
+      </div>
+      <br>
+      <%= submit_tag '确定', class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>

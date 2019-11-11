@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-2" style="margin-top: 50px; border-right: 2px solid grey;">
+    <ul>
+      <li><h4><a href="<%= "/stores/#{@current_store_id}/orders" %>">未处理订单</a></h4></li>
+      <li><h4><a href="<%= "/stores/#{@current_store_id}/items" %>">已上架商品</a></h4></li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <h3 class="text-center">未处理订单</h3>
+    <% @orders.each do |order| %>
+      <div class="row">
+        <div class="col-md-3 item_image">
+          <%= image_tag "item_images/#{order.item.id}.jpg", class: "img-fluid" %>
+        </div>
+        <div class="col-md-7 item_description">
+          <h4 class="text-left"><%= order.item.name %></h4>
+          <p><%= order.item.description %></p>
+        </div>
+        <div class="col-md-2 send_item" style="position:relative;">
+          <%= form_tag order_send_path, method: :post, style: "position:absolute; bottom:50px; right:0;" do%>
+            <%= hidden_field_tag "order_id", order.id %>
+            <%= submit_tag "发货", class: "btn btn-primary" %>
+          <% end %>
+          <p style="position:absolute; bottom:0; right:0;">
+            <span>价格 : <%= "#{order.amount} x #{order.item.price} 元" %></span>
+          </p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>

@@ -4,8 +4,16 @@ class StoreController < ApplicationController
     @stores = Store.where(user_id: session[:current_user]["id"])
   end
 
-  def store_detail
+  def store_orders
+    @orders = Order.joins(:item)
+                  .where(order_state_id: 1)
+                  .where("items.store_id = #{store_params[:store_id]}")
+    @current_store_id = store_params[:store_id]
+  end
 
+  def store_items
+    @items = Item.where(store_id: store_params[:store_id])
+    @current_store_id = store_params[:store_id]
   end
 
   def show_create_store_page

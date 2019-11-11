@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-md-2" style="margin-top: 50px; border-right: 2px solid grey;">
+    <ul>
+      <li><h4><a href="<%= "/stores/#{@current_store_id}/orders" %>">未处理订单</a></h4></li>
+      <li><h4><a href="<%= "/stores/#{@current_store_id}/items" %>">已上架商品</a></h4></li>
+    </ul>
+  </div>
+  <div class="col-md-8">
+    <h3 class="text-center">已上架商品</h3>
+    <% @items.each do |item| %>
+      <div class="row">
+        <div class="col-md-3 item_image">
+          <%= image_tag "item_images/#{item.id}.jpg", class: "img-fluid" %>
+        </div>
+        <div class="col-md-7 item_description">
+          <h4 class="text-left"><%= item.name %></h4>
+          <h6 class="text-left"><%= "剩余库存 : #{item.amount}" %></h6>
+          <p><%= item.description %></p>
+        </div>
+        <div class="col-md-2 operate_item" style="position:relative;">
+          <%= link_to '编辑', "/items/#{item.id}/edit", class: "btn btn-primary", role: "button" %><br><br>
+          <%= link_to '下架', "/items/#{item.id}/delete", class: "btn btn-danger", role: "button" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>

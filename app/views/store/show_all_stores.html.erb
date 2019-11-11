@@ -4,7 +4,7 @@
     <h3 class="text-center">请选择您的店铺</h3>
     <ul>
       <% @stores.each do |store| %>
-        <li><h4><%= link_to store.name, stores_path + "/#{store.id}" %></h4></li>
+        <li><h4><%= link_to store.name, stores_path + "/#{store.id}/orders" %></h4></li>
       <% end %>
     </ul>
     <br>
