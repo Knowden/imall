@@ -1,4 +1,5 @@
 class StoreController < ApplicationController
+  before_action :check_login
 
   def show_all_stores
     @stores = Store.where(user_id: session[:current_user]["id"])
@@ -33,5 +34,9 @@ class StoreController < ApplicationController
   private
   def store_params
     params.permit(:store_id, :store_name)
+  end
+
+  def check_login
+    redirect_to sign_in_url if session[:current_user].nil?
   end
 end

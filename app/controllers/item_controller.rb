@@ -1,5 +1,5 @@
 class ItemController < ApplicationController
-
+  before_action :check_login
 
   # 展示具体某个商品的详细信息
   def show
@@ -30,6 +30,10 @@ class ItemController < ApplicationController
   private
   def item_params
     params.permit(:item_id, :description, :amount)
+  end
+
+  def check_login
+    redirect_to sign_in_url if session[:current_user].nil?
   end
 
 end
