@@ -59,7 +59,7 @@ class CartController < ApplicationController
       end
       Cart.where(user_id: session[:current_user]["id"]).delete_all
     end
-    redirect_to cart_url
+    redirect_to orders_url
   end
 
   private
