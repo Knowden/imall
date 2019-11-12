@@ -10,13 +10,14 @@ class ItemController < ApplicationController
   end
 
   def show_edit_page
-    @item = Item.find_by id: item_params[:item_id]
+    @item = Item.find_by(id: item_params[:item_id])
   end
 
   def edit
-    @item = Item.find_by id: item_params[:item_id]
+    @item = Item.find_by(id: item_params[:item_id])
     if @item.update(amount: item_params[:amount],
-                    description: item_params[:description])
+                    description: item_params[:description],
+                    price: item_params[:price])
       redirect_to "/stores/#{@item.id}/items"
     else
       render :show_edit_page

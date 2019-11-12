@@ -14,11 +14,15 @@
     <%= form_tag "/items/#{@item.id}/edit", id: "item_form" do %>
       <div id="description_field">
         <label for="description">商品描述</label>
-        <textarea class="form-control" name="description" id="description" rows="3" form="item_form"><%= @item.description %></textarea>
+        <textarea class="form-control" name="description" id="description" rows="5" form="item_form"><%= @item.description %></textarea>
       </div>
       <div id="amount_id" style="margin-top: 10px">
         <label for="amount">库存数量</label>
         <input class="form-control" type="number" name="amount" id="amount" value="<%= @item.amount %>" style="width: 120px;">
+      </div>
+      <div id="price_field" style="margin-top: 10px">
+        <label for="price">商品价格</label>
+        <input class="form-control" type="number" name="price" value="<%= @item.price %>" id="price" style="width: 150px;" required>
       </div>
       <br>
       <%= submit_tag '确定', class: 'btn btn-primary'%>
