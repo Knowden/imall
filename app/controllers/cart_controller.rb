@@ -1,4 +1,5 @@
 class CartController < ApplicationController
+  before_action :check_login
 
   # 展示当前用户的所有购物车条目
   def show_carts
@@ -64,5 +65,9 @@ class CartController < ApplicationController
   private
   def cart_params
     params.permit(:parches_amount, :item_id, :cart_id)
+  end
+
+  def check_login
+    redirect_to sign_in_url if session[:current_user].nil?
   end
 end

@@ -24,6 +24,7 @@ class ItemController < ApplicationController
   end
 
   def delete
+    throw "删除商品功能尚未实现"
   end
 
   private

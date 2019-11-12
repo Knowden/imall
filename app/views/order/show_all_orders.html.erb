@@ -8,12 +8,25 @@
     <hr>
     <h2>未评论订单</h2>
     <% @no_comment_orders.each do |order| %>
-      <%= order.item.name %> <%= order.order_state.name %>
+      <%= order.item.name %> <%= order.order_state.name %> <%= link_to '去评论', "/orders/#{order.id}/comments/new" %> <br>
     <% end %>
     <hr>
     <h2>已完成订单</h2>
     <% @finish_orders.each do |order| %>
-      <%= order.item.name %> <%= order.order_state.name %>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-3 item_image">
+          <%= image_tag "item_images/#{order.item.id}.jpg", class: "img-fluid" %>
+        </div>
+        <div class="col-md-7 item_description">
+          <h4 class="text-left"><%= order.item.name %></h4>
+          <p><%= order.item.description %></p>
+        </div>
+        <div class="col-md-2" style="position:relative;">
+          <p style="position:absolute; bottom:0; right:0;">
+            <span>数量 : <%= order.amount %></span>
+          </p>
+        </div>
+      </div>
     <% end %>
   </div>
   <div class="col-md-2"></div>

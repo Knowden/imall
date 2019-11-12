@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4 class="text-center">新建评论</h4>
+    <h6 class="text-center">评论要注意礼仪哟(＾Ｕ＾)ノ</h6>
+    <% if @comment.errors.any? %>
+      <div id="error_msg" class="text-center" style="color: red; margin-top: 15px">
+        <h5>出错啦!</h5>
+        <% @comment.errors.full_messages.each do |message| %>
+          <%= message %> <br>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="form-group" style="margin-top: 10px">
+      <%= form_tag "#{request.url}" do %>
+        <%= text_area_tag 'content', nil, class: 'form-control', rows: '10', required: true %>
+        <br>
+        <%= submit_tag '提交', class: 'form-control btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="col-md-2"></div>
+</div>
