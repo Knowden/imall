@@ -3,7 +3,7 @@
   <div class="col-md-8" id="main">
     <div id="main_info" class="row">
       <div id="item_image" class="col-md-6">
-        <%= image_tag "item_images/#{@item[:id]}.jpg", class: "img-fluid" %>
+        <%= image_tag "item_images/#{@item.image_name}", class: "img-fluid" %>
         <h2 class="text-left"><%= @item[:name] %></h2>
       </div>
       <div id="item_parches" class="col-md-6 text-center">

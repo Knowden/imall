@@ -10,7 +10,7 @@
     <% @orders.each do |order| %>
       <div class="row">
         <div class="col-md-3 item_image">
-          <%= image_tag "item_images/#{order.item.id}.jpg", class: "img-fluid" %>
+          <%= image_tag "item_images/#{order.item.image_name}", class: "img-fluid" %>
         </div>
         <div class="col-md-7 item_description">
           <h4 class="text-left"><%= order.item.name %></h4>

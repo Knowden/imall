@@ -27,6 +27,9 @@ Rails.application.routes.draw do
   get     'stores/:store_id/orders', to: 'store#store_orders'      # 展示当前商店的所有待处理订单
   get     'stores/:store_id/items',  to: 'store#store_items'       # 展示当前商店的所有上架商品
 
+  get     'stores/:store_id/items/new',  to: 'item#show_create_item_page'  # 展示新建商品页面
+  post    'stores/:store_id/items/new',  to: 'item#create_item'            # 执行商品新建逻辑
+
   get     'store/new',          to: 'store#show_create_store_page' # 展示新建商店界面
   post    'store/new',          to: 'store#create_store'           # 执行新建商店逻辑，保存数据到数据库
 

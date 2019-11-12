@@ -27,9 +27,36 @@ class ItemController < ApplicationController
     throw "删除商品功能尚未实现"
   end
 
+  def show_create_item_page
+    @item = Item.new
+  end
+
+  def create_item
+    @item = Item.new(name: item_params[:name],
+                     amount: item_params[:amount],
+                     price: item_params[:price],
+                     store_id: item_params[:store_id],
+                     description: item_params[:description])
+    uploaded_io = params[:image]
+    file_name = "#{(Time.new.to_f * 1000).to_i}_#{uploaded_io.original_filename}"
+    File.open(Rails.root.join("app/assets/images/item_images/#{file_name}"), 'wb') do |file|
+      file.write(uploaded_io.read)
+    end
+
+    if @item.save
+      @item.update(image_name: file_name)
+      redirect_to "/stores/#{item_params[:store_id]}/items"
+    else
+      File.open(Rails.root.join("app/assets/images/item_images/#{file_name}"), 'wb') do |file|
+        file.delete
+      end
+      render :show_create_item_page
+    end
+  end
+
   private
   def item_params
-    params.permit(:item_id, :description, :amount)
+    params.permit(:item_id, :description, :amount, :store_id, :name, :price, :image)
   end
 
   def check_login

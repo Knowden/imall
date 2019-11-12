@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h3 class="text-center">上架商品</h3>
+    <% if @item.errors.any? %>
+      <div id="error_msg" class="text-center" style="color: red; margin-top: 15px">
+        <h5>出错啦!</h5>
+        <% @item.errors.full_messages.each do |message| %>
+          <%= message %> <br>
+        <% end %>
+      </div>
+    <% end %>
+    <%= form_tag "#{request.url}", id: "item_form", enctype: "multipart/form-data" do %>
+      <div id="name_field">
+        <label for="name">商品名称</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= @item.name %>" style="width: 300px;" required>
+      </div>
+      <div id="description_field" style="margin-top: 10px">
+        <label for="description">商品描述</label>
+        <textarea class="form-control" name="description" id="description" rows="3" form="item_form" required>
+          <%= @item.description %>
+        </textarea>
+      </div>
+      <div id="amount_id" style="margin-top: 10px">
+        <label for="amount">库存数量</label>
+        <input class="form-control" type="number" name="amount" value="<%= @item.amount %>" id="amount" style="width: 150px;" required>
+      </div>
+      <div id="price_field" style="margin-top: 10px">
+        <label for="price">商品价格</label>
+        <input class="form-control" type="number" name="price" value="<%= @item.price %>" id="price" style="width: 150px;" required>
+      </div>
+      <div id="image_field" style="margin-top: 20px">
+        <%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
+      </div>
+      <br>
+      <%= submit_tag '确定', class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
