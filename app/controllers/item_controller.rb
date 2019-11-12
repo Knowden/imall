@@ -18,7 +18,7 @@ class ItemController < ApplicationController
     if @item.update(amount: item_params[:amount],
                     description: item_params[:description],
                     price: item_params[:price])
-      redirect_to "/stores/#{@item.id}/items"
+      redirect_to "/stores/#{@item.store_id}/items"
     else
       render :show_edit_page
     end

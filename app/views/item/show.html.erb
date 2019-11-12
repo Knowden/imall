@@ -8,6 +8,7 @@
       </div>
       <div id="item_parches" class="col-md-6 text-center">
         <h6>剩余数量：<%= @item[:amount] %></h6>
+        <h6>商品价格：<%= @item[:price] %>元</h6>
         <%= form_tag cart_path, class: "form-group", method: :post do %>
           <div class="input-group">
             <label class="form-inline" for="parches_amount" style="margin-right: 10px; padding-top: 5px">数量</label>

@@ -11,7 +11,10 @@
       <% end %>
       <div class="col-md-3 item_block" id="<%= item[:id] %>" style="cursor: pointer">
         <%= image_tag "item_images/#{item.image_name}", class: 'img-fluid', style: 'margin-bottom: 5px'%>
-        <h3><%= item[:name] %></h3>
+        <div class="row">
+          <div class="col-md-6 text-left"><h3><%= item[:name] %></h3></div>
+          <div class="col-md-6 text-right"><h6><%= item[:price]%>元</h6></div>
+        </div>
         <p><%= item[:description] %></p>
       </div>
       <% if i % 4 == 3 %>
