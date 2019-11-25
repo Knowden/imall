@@ -7,6 +7,9 @@
   </div>
   <div class="col-md-8">
     <h3 class="text-center">已上架商品</h3>
+    <div id="error_msg" class="text-center" style="color: red">
+      <%= alert %>
+    </div>
     <div id="show_items">
       <% @items.each do |item| %>
         <div class="row" style="margin-bottom: 30px">
