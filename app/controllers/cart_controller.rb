@@ -28,8 +28,8 @@ class CartController < ApplicationController
         end
       end
       redirect_to cart_url
-    rescue ActiveRecord::ActiveRecordError => e
-      redirect_back fallback_location: root_url, alert: ""
+    rescue ActiveRecord::ActiveRecordError
+      redirect_back fallback_location: root_url, alert: "库存不足的啊"
     end
   end
 

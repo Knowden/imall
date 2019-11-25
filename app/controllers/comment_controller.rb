@@ -1,5 +1,6 @@
 class CommentController < ApplicationController
   before_action :check_login
+  before_action :check_permission
 
   def show_create_comment_page
     @comment = Comment.new
@@ -26,5 +27,13 @@ class CommentController < ApplicationController
 
   def check_login
     redirect_to sign_in_url if session[:current_user].nil?
+  end
+
+  # 只有存在对应的未评论的商品时，才有权限进行评论
+  def check_permission
+    order = Order.find_by id: comment_params[:order_id],
+                           user_id: session[:current_user]["id"],
+                           order_state_id: 2
+    redirect_to '/404.html' if order.nil?
   end
 end

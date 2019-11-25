@@ -7,6 +7,7 @@
         <h2 class="text-left"><%= @item[:name] %></h2>
       </div>
       <div id="item_parches" class="col-md-6 text-center">
+        <h6 style="color: red"><%= alert %></h6>
         <h6>剩余数量：<%= @item[:amount] %></h6>
         <h6>商品价格：<%= @item[:price] %>元</h6>
         <%= form_tag cart_path, class: "form-group", method: :post do %>

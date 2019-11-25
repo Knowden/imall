@@ -1,5 +1,7 @@
 class ItemController < ApplicationController
   before_action :check_login
+  before_action :check_item_permission, only: [:show_edit_page, :edit, :delete] # 只能编辑和删除自己商店内的商品
+  before_action :check_store_permission, only: [:show_create_item_page, :create_item]  # 只能对自己的商店进行新建商品
 
   # 展示具体某个商品的详细信息
   def show
@@ -69,4 +71,15 @@ class ItemController < ApplicationController
     redirect_to sign_in_url if session[:current_user].nil?
   end
 
+  # 对商品进行编辑和删除操作前，需要验证该商品为当前用户的店铺内的商品
+  def check_item_permission
+    item = Item.find_by id: item_params[:item_id]
+    redirect_to '/404.html' if item.nil? or item.store.user_id != session[:current_user]["id"]
+  end
+
+  # 新建商品前，需要验证当前上架的商店是当前用户所持有的商店
+  def check_store_permission
+    store = Store.find_by id: item_params[:store_id], user_id: session[:current_user]["id"]
+    redirect_to '/404.html' if store.nil?
+  end
 end

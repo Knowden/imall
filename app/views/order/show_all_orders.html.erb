@@ -3,12 +3,39 @@
   <div class="col-md-8">
     <h2>未发货订单</h2>
     <% @no_shipped_orders.each do |order| %>
-      <%= order.item.name %> <%= order.order_state.name %>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-3 item_image">
+          <a href="/items/<%= order.item.id %>"><%= image_tag "item_images/#{order.item.image_name}", class: "img-fluid" %></a>
+        </div>
+        <div class="col-md-7 item_description">
+          <h4 class="text-left"><%= order.item.name %></h4>
+          <p><%= order.item.description %></p>
+        </div>
+        <div class="col-md-2" style="position:relative;">
+          <p style="position:absolute; bottom:0; right:0;">
+            <span>数量 : <%= order.amount %></span>
+          </p>
+        </div>
+      </div>
     <% end %>
     <hr>
     <h2>未评论订单</h2>
     <% @no_comment_orders.each do |order| %>
-      <%= order.item.name %> <%= order.order_state.name %> <%= link_to '去评论', "/orders/#{order.id}/comments/new" %> <br>
+      <div class="row" style="margin-top: 10px">
+        <div class="col-md-3 item_image">
+          <a href="/items/<%= order.item.id %>"><%= image_tag "item_images/#{order.item.image_name}", class: "img-fluid" %></a>
+        </div>
+        <div class="col-md-7 item_description">
+          <h4 class="text-left"><%= order.item.name %></h4>
+          <p><%= order.item.description %></p>
+        </div>
+        <div class="col-md-2" style="position:relative;">
+          <p style="position:absolute; bottom:0; right:0;">
+            <span>数量 : <%= order.amount %></span><br>
+            <%= link_to '去评论', "/orders/#{order.id}/comments/new" %>
+          </p>
+        </div>
+      </div>
     <% end %>
     <hr>
     <h2>已完成订单</h2>
