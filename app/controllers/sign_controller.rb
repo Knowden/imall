@@ -7,7 +7,7 @@ class SignController < ApplicationController
   def do_sign_up
     @user = User.create user_params
     if @user.save
-      redirect_to '/'
+      redirect_to sign_in_url
     else
       render :show_sign_up_page
     end

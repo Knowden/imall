@@ -9,24 +9,28 @@ class CartController < ApplicationController
   # 接收参数，新建购物车条目
   # 事务：首先减少商品的库存，然后在当前用户的购物车中创建新的记录
   def new_cart
-    # 减少库存和创建记录应保持事务性，要么都执行，要么都不执行
-    ActiveRecord::Base.transaction do
-      # 减少Item表中的库存
-      item = Item.find_by!(id: cart_params[:item_id])
-      new_amount = item[:amount] - cart_params[:parches_amount].to_i
-      item.update!(amount: new_amount)
+    begin
+      # 减少库存和创建记录应保持事务性，要么都执行，要么都不执行
+      ActiveRecord::Base.transaction do
+        # 减少Item表中的库存
+        item = Item.find_by!(id: cart_params[:item_id])
+        new_amount = item[:amount] - cart_params[:parches_amount].to_i
+        item.update!(amount: new_amount)
 
-      # 创建新的购物车记录到当前用户
-      cart = Cart.find_by(user_id: session[:current_user]["id"], item_id: cart_params[:item_id])
-      if cart.nil?
-        Cart.create!(user_id: session[:current_user]["id"],
-                     item_id: cart_params[:item_id],
-                     amount: cart_params[:parches_amount])
-      else
-        cart.update!(amount: cart[:amount] + cart_params[:parches_amount].to_i)
+        # 创建新的购物车记录到当前用户
+        cart = Cart.find_by(user_id: session[:current_user]["id"], item_id: cart_params[:item_id])
+        if cart.nil?
+          Cart.create!(user_id: session[:current_user]["id"],
+                       item_id: cart_params[:item_id],
+                       amount: cart_params[:parches_amount])
+        else
+          cart.update!(amount: cart[:amount] + cart_params[:parches_amount].to_i)
+        end
       end
+      redirect_to cart_url
+    rescue ActiveRecord::ActiveRecordError => e
+      redirect_back fallback_location: root_url, alert: ""
     end
-    redirect_to cart_url
   end
 
   # 删除购物车中的某个物品

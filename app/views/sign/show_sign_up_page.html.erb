@@ -3,7 +3,6 @@
   <div class="col-md-8">
     <h3 class="text-center" style="margin-bottom: 20px;">欢迎注册会员</h3>
     <%= form_with model: @user, local: true, url: {action: 'do_sign_up'} do |form| %>
-
       <% if @user.errors.any? %>
         <div id="error_msg" class="text-center" style="color: red; margin-top: 15px">
           <h5>出错啦!</h5>

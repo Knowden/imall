@@ -1,0 +1,29 @@
+zh:
+  activerecord:
+    attributes:
+      user:
+        name: "用户名"
+        password: "密码"
+      store:
+        name: "店名"
+      order:
+        amount: "总量"
+      order_state:
+        name: "状态名"
+      item:
+        name: "商品名"
+        amount: "库存"
+        price: "价格"
+        description: "商品描述"
+        image_name: "图片名"
+      comment:
+        content: "评论内容"
+        create_date: "评论日期"
+      carts:
+        amount: "总量"
+    errors:
+      messages:
+        blank: "不得为空"
+        taken: "已经存在"
+        greater_than: "必须大于%{count}"
+        greater_than_or_equal_to: "必须大于等于%{count}"
