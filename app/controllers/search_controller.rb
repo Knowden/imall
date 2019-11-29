@@ -2,10 +2,10 @@ class SearchController < ApplicationController
   before_action :check_login
 
   def show_search_page
-    if params[:key_word].nil? or params[:key_word] == ""
+    if search_params[:key_word].nil? or search_params[:key_word] == ""
       redirect_to root_url
     end
-    @items = Item.where("name like ?", "%#{params[:key_word]}%")
+    @items = Item.where("name like ?", "%#{search_params[:key_word]}%")
   end
 
   private

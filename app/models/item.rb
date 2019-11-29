@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :amount, presence: true
   validates :price, presence: true
+  validates :image_name, presence: true
 
   validates :amount, numericality: { greater_than_or_equal_to: 0 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }

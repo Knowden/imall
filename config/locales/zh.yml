@@ -15,7 +15,7 @@ zh:
         amount: "库存"
         price: "价格"
         description: "商品描述"
-        image_name: "图片名"
+        image_name: "图片"
       comment:
         content: "评论内容"
         create_date: "评论日期"

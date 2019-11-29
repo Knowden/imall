@@ -17,9 +17,7 @@
       </div>
       <div id="description_field" style="margin-top: 10px">
         <label for="description">商品描述</label>
-        <textarea class="form-control" name="description" id="description" rows="5" form="item_form" required>
-          <%= @item.description %>
-        </textarea>
+        <textarea class="form-control" name="description" id="description" rows="5" form="item_form" required><%= @item.description %></textarea>
       </div>
       <div id="amount_id" style="margin-top: 10px">
         <label for="amount">库存数量</label>
@@ -30,7 +28,7 @@
         <input class="form-control" type="text" name="price" value="<%= @item.price %>" id="price" style="width: 150px;" required>
       </div>
       <div id="image_field" style="margin-top: 20px">
-        <%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
+        商品图片: <%= file_field_tag 'image', accept: 'image/png,image/gif,image/jpeg' %>
       </div>
       <br>
       <%= submit_tag '确定', class: 'btn btn-primary'%>

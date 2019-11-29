@@ -12,7 +12,7 @@
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
         <%= form_tag search_path, method: :get do %>
-          <input type="text" name="key_word" placeholder="窝窝头，一块钱四个，嘿嘿" class="form-control" required>
+          <input type="text" name="key_word" placeholder="<%= @recommend.name %>" class="form-control" required>
           <button class="btn btn-primary" style="margin-top: 15px">剁手肯定是要剁手的</button>
         <% end %>
       </div>

@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-8" id="main">
-    <h3 class="text-center">搜索结果如下</h3> <br>
+    <h3 class="text-center">对于<%= params[:key_word] %>的搜索结果如下</h3> <br>
     <%
       i = 0
       @items.each do |item|
