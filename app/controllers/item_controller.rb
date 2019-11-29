@@ -27,8 +27,7 @@ class ItemController < ApplicationController
   end
 
   def delete
-    item_id = item_params[:item_id]
-    if not Item.destroy(item_id)
+    if not Item.destroy(item_params[:item_id])
       redirect_back(fallback_location: root_url, alert: "还有尚未处理的相关订单")
     else
       redirect_back fallback_location: root_url
@@ -62,9 +61,7 @@ class ItemController < ApplicationController
     if @item.save
       redirect_to "/stores/#{item_params[:store_id]}/items"
     else
-      File.open(Rails.root.join("app/assets/images/item_images/#{file_name}"), 'wb') do |file|
-        file.delete
-      end
+      File.delete(Rails.root.join("app/assets/images/item_images/#{file_name}"))
       render :show_create_item_page
     end
   end

@@ -19,7 +19,7 @@
         <div class="col-md-2 send_item" style="position:relative;">
           <%= form_tag order_send_path, method: :post, style: "position:absolute; bottom:50px; right:0;" do%>
             <%= hidden_field_tag "order_id", order.id %>
-            <%= submit_tag "发货", class: "btn btn-primary" %>
+            <%= submit_tag "发货", data: { confirm: "确认要发货吗？"}, class: "btn btn-primary" %>
           <% end %>
           <p style="position:absolute; bottom:0; right:0;">
             <span>价格 : <%= "#{order.amount} x #{order.item.price} 元" %></span>

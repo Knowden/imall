@@ -17,6 +17,7 @@ class Item < ApplicationRecord
       self.delete_comment_of_item
       self.delete_orders_of_item
     end
+    File.delete(Rails.root.join("app/assets/images/item_images/#{self.image_name}"))
   end
 
   def have_orders_not_handle?
