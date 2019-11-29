@@ -39,7 +39,7 @@ Rails.application.routes.draw do
   post    'items/:item_id/edit',  to: 'item#edit'                  # 执行商品编辑逻辑
 
 
-  get     'items/:item_id/delete', to: 'item#delete'               # 删除指定商品
+  delete     'items/:item_id/delete', to: 'item#delete'               # 删除指定商品
 
   get     'orders/:order_id/comments/new', to: 'comment#show_create_comment_page'  # 展示为指定商品创建评论的页面
   post    'orders/:order_id/comments/new', to: 'comment#create_comment'            # 执行为指定商品创建评论的操作
