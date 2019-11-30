@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+OrderState.create(name: '待发货')
+OrderState.create(name: '待评价')
+OrderState.create(name: '已完成')
